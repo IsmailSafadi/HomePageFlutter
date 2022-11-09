@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_demo_app/widgets/collection_item.dart';
+import 'package:flutter_application_demo_app/widgets/home_tob_bar.dart';
+import 'package:flutter_application_demo_app/widgets/list_item.dart';
+import 'package:flutter_application_demo_app/widgets/search_form.dart';
+import 'package:flutter_application_demo_app/widgets/section_header.dart';
+import 'package:flutter_application_demo_app/widgets/bottom_navigation_bar.dart';
 import 'package:flutter_svg/svg.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,67 +25,8 @@ class _HomePageState extends State<HomePage> {
         child: SafeArea(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Current location',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(child: Icon(size: 14, Icons.pin_drop)),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Text('Surakarta')
-                          ],
-                        )
-                      ],
-                    ),
-                    Container(
-                      height: 35,
-                      width: 35,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(17.5),
-                        image: DecorationImage(
-                            image: AssetImage('assets/images/ava.png'),
-                            fit: BoxFit.fill),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(14)),
-                  width: size.width - 32,
-                  margin: EdgeInsets.only(bottom: 16),
-                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      icon: SvgPicture.asset(
-                        'assets/icons/search.svg',
-                        color: Colors.orange,
-                      ),
-                      border: InputBorder.none,
-                      hintText: 'What are you looking for?',
-                      hintStyle: TextStyle(color: Colors.grey),
-                    ),
-                  )),
+              HomeTopBar(),
+              SearchForm(size: size),
               Expanded(
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
@@ -93,113 +40,13 @@ class _HomePageState extends State<HomePage> {
                           scrollDirection: Axis.horizontal,
                           itemCount: 3,
                           itemBuilder: (BuildContext context, int index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Container(
-                                decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(20)),
-                                child:
-                                
-                                 Padding(
-                                   padding: const EdgeInsets.all(16.0),
-                                   child: Column(
-                                    
-                                    children: [
-                                    Container(
-                                      height: 260,
-                                      width: 260,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        image: DecorationImage(
-                                            image:
-                                                AssetImage('assets/images/1.jpg'),
-                                            fit: BoxFit.fill),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Container(
-                                      height: 35,
-                                      width: 260,
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            '43 Joined',
-                                            style: TextStyle(fontWeight: FontWeight.w600),
-                                            textAlign: TextAlign.left,
-                                          ),
-                                          // Container(
-                                          //   height: 35,
-                                          //   width: 250,
-                                          //   child: IndexedStack(children: [
-                                          //     Positioned(
-                                          //       // top: 30,
-                                          //       // left: 30,
-                                          //       height: 35,
-                                          //       width: 35,
-                                          //       child: Container(
-                                          //         height: 35,
-                                          //         width: 35,
-                                          //         decoration: BoxDecoration(
-                                          //           borderRadius:
-                                          //               BorderRadius.circular(17.5),
-                                          //           image: DecorationImage(
-                                          //               image: AssetImage(
-                                          //                   'assets/images/ava.png'),
-                                          //               fit: BoxFit.fill),
-                                          //         ),
-                                          //       ),
-                                          //     ),
-                                          //     Positioned(
-                                          //       top: 30,
-                                          //       left: 30,
-                                          //       child: Container(
-                                          //         height: 35,
-                                          //         width: 35,
-                                          //         decoration: BoxDecoration(
-                                          //           borderRadius:
-                                          //               BorderRadius.circular(17.5),
-                                          //           image: DecorationImage(
-                                          //               image: AssetImage(
-                                          //                   'assets/images/ava.png'),
-                                          //               fit: BoxFit.fill),
-                                          //         ),
-                                          //       ),
-                                          //     ),
-                                          //   ]),
-                                          // )
-                                        ],
-                                      ),
-                                    )
-                                ]),
-                                 ),
-                              ),
-                            );
+                            return
+                             CollectionItem();
                           },
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text('Event for you',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,fontSize: 17)),
-                              Text('View more')
-                            ],
-                          ),
-                        ),
-                      ),
-                      // Flexible(
-                      // child:
+                      SectionHeader(),
+               
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
@@ -212,73 +59,13 @@ class _HomePageState extends State<HomePage> {
                               itemBuilder: (BuildContext context, int index) {
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(vertical: 16,horizontal: 8),
-                                  child: Container(
-                                                                    decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(20)),
-
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(16.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Container(
-                                                height: 65,
-                                                width: 65,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  image: DecorationImage(
-                                                      image: AssetImage(
-                                                          'assets/images/ava.png'),
-                                                      fit: BoxFit.fill),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 16,
-                                              ),
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    'Volunteer Solosup',
-                                                    textAlign: TextAlign.left,
-                                                  ),
-                                                  Text(
-                                                    '09:00 AM to 03:00 PM',
-                                                    textAlign: TextAlign.left,
-                                                  ),
-                                                  Text(
-                                                    'Surakarta, INA',
-                                                    textAlign: TextAlign.left,
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                          TextButton(
-                                              onPressed: () {},
-                                              child: Text(
-                                                'Join',
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold),
-                                              ))
-                                        ],
-                                      ),
-                                    ),
-                                  ),
+                                  child: ListItem(),
                                 );
                               },
                             ),
                           ],
                         ),
                       ),
-                      // ),
                     ],
                   ),
                 ),
@@ -287,29 +74,31 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              IconButton(
-                  onPressed: () {},
-                  icon: SvgPicture.asset('assets/icons/collection.svg')),
-              IconButton(
-                  onPressed: () {},
-                  icon: SvgPicture.asset('assets/icons/calendar.svg')),
-              IconButton(
-                  onPressed: () {},
-                  icon: SvgPicture.asset('assets/icons/disc.svg')),
-              IconButton(
-                  onPressed: () {},
-                  icon: SvgPicture.asset('assets/icons/heart.svg')),
-            ],
-          ),
+      bottomNavigationBar: 
+      SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset('assets/icons/collection.svg')),
+            IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset('assets/icons/calendar.svg')),
+            IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset('assets/icons/disc.svg')),
+            IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset('assets/icons/heart.svg')),
+          ],
         ),
       ),
+    )
     );
   }
 }
+
